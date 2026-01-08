@@ -1,0 +1,8 @@
+**/*.md
+**/*.svg
+**/*.html
+.env*
+package.json
+.prettierignore
+*.lock
+public/

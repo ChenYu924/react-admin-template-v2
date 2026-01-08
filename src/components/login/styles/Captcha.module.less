@@ -1,0 +1,82 @@
+.container {
+  height: 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background-color: #f1f1f4;
+  line-height: 40px;
+  text-align: center;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+
+  .slider {
+    width: 38px;
+    height: 38px;
+    border-radius: 7px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #7987a1;
+    transition:
+      background 0.3s ease-in,
+      color 0.3s ease-in;
+    z-index: 2;
+
+    &:hover {
+      background-color: #1991fa;
+      color: white;
+    }
+  }
+
+  .sliderBg {
+    height: 100%;
+    background-color: #57d187;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .tips {
+    color: transparent;
+    background: linear-gradient(
+      to right,
+      #4d5875 0%,
+      #4d5875 40%,
+      #fff 50%,
+      #4d5875 60%,
+      #4d5875 100%
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2s cubic-bezier(0, 0.2, 1, 1) infinite;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+
+    @keyframes shine {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
+  }
+
+  .successText {
+    width: 56px;
+    height: 40px;
+    color: #fff;
+    z-index: 3;
+    position: absolute;
+    left: calc(50% - 28px);
+  }
+}

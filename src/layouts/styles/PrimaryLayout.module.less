@@ -1,0 +1,39 @@
+@import (reference) '@/global.less';
+
+.container {
+
+  .slider {
+    width: 200px;
+    height: 100vh;
+    border-right: 1px solid #f3f5f7;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+
+  .header {
+    height: 64px;
+    background-color: #fff;
+    border-bottom: 1px solid #f3f5f7;
+    padding: 0 32px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+
+    .avatar {
+      background-color: #1677ff;
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    min-height: calc(100vh - 96px);
+    background-color: #fff;
+    border-radius: @common-radius-normal;
+    padding: @common-size-normal;
+    margin: @common-size-normal;
+  }
+}

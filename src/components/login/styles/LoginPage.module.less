@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  .left {
+    width: 65vw;
+    background-color: #E8F2FF;
+  }
+
+  .right {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+      width: 440px;
+      height: 600px;
+      padding: 40px 0;
+
+      .title {
+        font-size: 36px;
+        font-weight: 600;
+        color: #323251;
+      }
+
+      .subtitle {
+        margin-top: 2px;
+        font-size: 14px;
+        color: #7987a1;
+      }
+    }
+  }
+}
