@@ -1,5 +1,11 @@
+import { Card } from 'antd';
+
 function Workspace() {
-  return <div className='h-[3000px]'>工作台</div>;
+  return (
+    <Card className='ant-card'>
+      工作台
+    </Card>
+  );
 }
 
 export default Workspace;

@@ -1,11 +1,10 @@
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
 import PrimaryLayoutProvider from '@/layouts/provider/PrimaryLayoutProvider.jsx';
+import RouteList from '@/layouts/routes/RouteList.jsx';
 
 function App() {
   return (
     <PrimaryLayoutProvider>
-      <RouterProvider router={router}></RouterProvider>
+      <RouteList />
     </PrimaryLayoutProvider>
   );
 }

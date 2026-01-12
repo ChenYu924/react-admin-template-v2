@@ -1,6 +1,7 @@
 // less变量
 @common-size-normal: 16px;
 @common-radius-normal: 8px;
+@header-height: 64px;
 
 * {
   margin: 0;
@@ -10,4 +11,8 @@
 
 body {
   min-width: 1400px;
+}
+
+.ant-card {
+  min-height: calc(100vh - @header-height - @common-size-normal*2);
 }

@@ -1,29 +1,25 @@
-import { createBrowserRouter } from 'react-router-dom';
-
-import HomePage from '@/pages/HomePage.jsx';
-import LoginPage from '@/pages/login/LoginPage.jsx';
-import PrimaryLayout from '@/layouts/PrimaryLayout.jsx';
-import Workspace from '@/pages/workspace/Workspace.jsx';
-
-const router = createBrowserRouter([
+const router = [
   {
     path: '/login',
-    Component: LoginPage,
+    element: 'LoginPage',
   },
   {
     path: '/',
-    Component: HomePage,
+    element: 'HomePage',
   },
   {
     path: '/',
-    Component: PrimaryLayout,
+    layout: 'PrimaryLayout',
     children: [
       {
-        path: '/workspace',
-        Component: Workspace,
+        path: 'workspace',
+        element: 'Workspace',
+        wrappers: ['Authenticated'],
+        showMenu: false,
+        showHeader: true,
       },
     ],
   },
-]);
+];
 
 export default router;

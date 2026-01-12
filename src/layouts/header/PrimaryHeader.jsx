@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout, Avatar, Dropdown } from 'antd';
 import { UserOutlined, LoginOutlined } from '@ant-design/icons';
 import styles from '@/layouts/styles/PrimaryLayout.module.less';
+import Cookies from 'js-cookie';
 
 const { Header } = Layout;
 const items = [
@@ -18,7 +19,7 @@ function PrimaryHeader() {
 
   function handleMenuClick({ key }) {
     if (key === 'loginOut') {
-      document.cookie = 'token=; path=/; max-age=0';
+      Cookies.remove('token');
       navigate('/login');
     }
   }

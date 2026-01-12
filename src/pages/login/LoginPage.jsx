@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 import { Form, Input, Checkbox, Typography, Button, Space } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import AOS from 'aos';
+import Cookies from 'js-cookie';
 import styles from '@/components/login/styles/LoginPage.module.less';
+import { generateUUID } from '@/utils/commonUtils.js';
 import Captcha from '@/components/login/Captcha.jsx';
 
 function LoginPage() {
@@ -31,7 +34,7 @@ function LoginPage() {
       console.warn('login:', values);
       setLoading(true);
       setTimeout(() => {
-        document.cookie = `token=${Math.random().toString(36).substring(2)}; path=/; ${remember ? 'max-age=604800' : ''}`;
+        Cookies.set('token', generateUUID(), { expires: 7 });
         setLoading(false);
         navigate('/');
       }, 1000);
