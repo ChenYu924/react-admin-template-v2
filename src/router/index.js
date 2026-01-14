@@ -15,7 +15,7 @@ const router = [
         path: 'workspace',
         element: 'Workspace',
         wrappers: ['Authenticated'],
-        showMenu: false,
+        showMenu: true,
         showHeader: true,
       },
     ],

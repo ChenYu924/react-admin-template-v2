@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@reduxjs/toolkit": "^2.11.2",
+    "ahooks": "^3.9.6",
     "antd": "^6.1.2",
     "aos": "^2.3.4",
     "classnames": "^2.5.1",

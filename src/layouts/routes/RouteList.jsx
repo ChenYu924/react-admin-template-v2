@@ -1,32 +1,37 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import router from '@/router/index.js';
 import { generateUUID } from '@/utils/commonUtils.js';
 import Page403 from '@/pages/Page403.jsx';
 import Page404 from '@/pages/Page404.jsx';
 
+const modules = import.meta.glob('/src/{layouts,pages}/**/*.{jsx,tsx}');
 const allPages = Object.fromEntries(
-  Object.entries(import.meta.glob('/src/{layouts,pages}/**/*.{jsx,tsx}', { eager: true })).map(
-    ([path, mod]) => {
-      const filename = path.split('/').pop();
-      const name = filename.replace(/\.(jsx|tsx)$/, '');
-      return [name, mod.default || mod];
-    },
-  ),
+  Object.entries(modules).map(([path, resolver]) => {
+    const filename = path.split('/').pop();
+    const name = filename.replace(/\.(jsx|tsx)$/, '');
+    const LazyComp = lazy(resolver);
+    return [name, LazyComp];
+  }),
 );
 
 function RouteList() {
+  function renderLazy(Component, children = null) {
+    return Component ? (
+      <Suspense fallback={null}>
+        <Component>{children}</Component>
+      </Suspense>
+    ) : null;
+  }
   function getElement(route) {
     const Component = allPages[route.layout || route.element];
     if (Array.isArray(route.wrappers) && route.wrappers.length) {
-      return route.wrappers.reduce(
-        (acc, wrapperName) => {
-          const WrapperComponent = allPages[wrapperName];
-          return WrapperComponent ? <WrapperComponent>{acc}</WrapperComponent> : acc;
-        },
-        <Component />,
-      );
+      return route.wrappers.reduce((acc, wrapperName) => {
+        const WrapperComponent = allPages[wrapperName];
+        return WrapperComponent ? renderLazy(WrapperComponent, acc) : acc;
+      }, renderLazy(Component));
     }
-    return Component ? <Component /> : null;
+    return renderLazy(Component);
   }
   function renderRoute(route, isChild = false) {
     return (
@@ -43,13 +48,11 @@ function RouteList() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {router.map((route) => renderRoute(route))}
-        <Route path="/403" element={<Page403 />} />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {router.map((route) => renderRoute(route))}
+      <Route path="/403" element={<Page403 />} />
+      <Route path="*" element={<Page404 />} />
+    </Routes>
   );
 }
 

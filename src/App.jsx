@@ -1,11 +1,14 @@
+import { BrowserRouter } from 'react-router-dom';
 import PrimaryLayoutProvider from '@/layouts/provider/PrimaryLayoutProvider.jsx';
 import RouteList from '@/layouts/routes/RouteList.jsx';
 
 function App() {
   return (
-    <PrimaryLayoutProvider>
-      <RouteList />
-    </PrimaryLayoutProvider>
+    <BrowserRouter>
+      <PrimaryLayoutProvider>
+        <RouteList />
+      </PrimaryLayoutProvider>
+    </BrowserRouter>
   );
 }
 

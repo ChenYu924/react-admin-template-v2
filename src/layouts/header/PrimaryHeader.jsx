@@ -1,6 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { Layout, Avatar, Dropdown } from 'antd';
-import { UserOutlined, LoginOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  LoginOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons';
 import styles from '@/layouts/styles/PrimaryLayout.module.less';
 import Cookies from 'js-cookie';
 
@@ -14,7 +19,7 @@ const items = [
   },
 ];
 
-function PrimaryHeader() {
+function PrimaryHeader({ collapsed, setCollapsed }) {
   const navigate = useNavigate();
 
   function handleMenuClick({ key }) {
@@ -26,6 +31,11 @@ function PrimaryHeader() {
 
   return (
     <Header className={styles.header} theme="light">
+      <div className={styles.left}>
+        <div className={styles.collapsedContainer} onClick={() => setCollapsed(!collapsed)}>
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </div>
+      </div>
       <Dropdown menu={{ items, onClick: handleMenuClick }}>
         <Avatar className={styles.avatar} icon={<UserOutlined />} />
       </Dropdown>

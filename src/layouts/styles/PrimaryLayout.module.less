@@ -1,7 +1,6 @@
 @import (reference) '@/global.less';
 
 .container {
-
   .slider {
     width: 200px;
     height: 100vh;
@@ -9,20 +8,67 @@
     position: sticky;
     top: 0;
     z-index: 99;
+
+    .logoContainer {
+      height: 64px;
+      padding: 16px;
+      border-bottom: 1px solid transparent;
+
+      .logo {
+        height: 100%;
+        border-radius: @common-radius-normal;
+        background-color: #edeff0;
+        user-select: none;
+        cursor: pointer;
+      }
+    }
+
+    .menuContainer {
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none; // Internet Explorer 10+
+
+      :global(.ant-menu-inline) {
+        border-inline-end: none !important;
+      }
+
+      :global(.ant-menu-vertical) {
+        border-inline-end: none !important;
+      }
+    }
   }
 
   .header {
     height: @header-height;
     background-color: #fff;
     border-bottom: 1px solid #f3f5f7;
-    padding: 0 32px;
+    padding: 0 32px 0 16px;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 98;
     box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.08);
+
+    .left {
+      .collapsedContainer {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        color: #7987a1;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color @common-transition-duration;
+
+        &:hover {
+          background-color: #edeff0;
+        }
+      }
+    }
 
     .avatar {
       background-color: #1677ff;
