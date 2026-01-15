@@ -1,14 +1,19 @@
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import { DashboardOutlined, ProfileOutlined } from '@ant-design/icons';
 import styles from '@/layouts/styles/PrimaryLayout.module.less';
 
 const { Sider } = Layout;
+/**
+ * @typedef {Object} MenuItem - {key, label, icon?, path?, children?}
+ * 菜单数据说明：通常由后端提供；登录时可缓存到 Redux/本地；根据用户角色/权限返回对应菜单。
+ */
 const items = [
   {
-    key: '1',
+    key: '/workspace',
     label: '我的工作台',
     icon: <DashboardOutlined />,
-    path: '/workspace',
   },
   {
     key: '2',
@@ -16,7 +21,7 @@ const items = [
     icon: <ProfileOutlined />,
     children: [
       {
-        key: '2-1',
+        key: '/menu1-1',
         label: '菜单1-1',
       },
       {
@@ -24,27 +29,42 @@ const items = [
         label: '菜单1-2',
         children: [
           {
-            key: '2-2-1',
+            key: '/403',
             label: '菜单1-2-1',
           },
         ],
       },
     ],
   },
-  {
-    key: '3',
-    label: '目录2',
-    icon: <ProfileOutlined />,
-    children: [
-      ...Array.from({ length: 80 }, (_, i) => ({
-        key: `3-${i}`,
-        label: `菜单2-${i + 1}`,
-      })),
-    ],
-  },
+  // {
+  //   key: '3',
+  //   label: '目录2',
+  //   icon: <ProfileOutlined />,
+  //   children: [
+  //     ...Array.from({ length: 80 }, (_, i) => ({
+  //       key: `3-${i}`,
+  //       label: `菜单2-${i + 1}`,
+  //     })),
+  //   ],
+  // },
 ];
 
 function PrimarySider({ collapsed }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [currentMenuItemKey, setCurrentMenuItemKey] = useState();
+
+  useEffect(() => {
+    if (location.pathname) {
+      setCurrentMenuItemKey(location.pathname);
+    }
+  }, [location]);
+
+  function handleMenuItemClick({ key }) {
+    setCurrentMenuItemKey(key);
+    navigate(key);
+  }
+
   return (
     <Sider className={styles.slider} collapsed={collapsed} theme="light">
       <div className={styles.logoContainer}>
@@ -53,10 +73,9 @@ function PrimarySider({ collapsed }) {
       <div className={styles.menuContainer}>
         <Menu
           items={items}
-          selectedKeys={['1']}
+          selectedKeys={[currentMenuItemKey]}
           mode="inline"
-          popupClassName={styles.siderPopup} // 限制弹窗高度的样式类（由 css module 提供）
-          getPopupContainer={() => document.body} // 将弹窗挂载到 body，避免撑高侧栏/页面
+          onClick={handleMenuItemClick}
         />
       </div>
     </Sider>

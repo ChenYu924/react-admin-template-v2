@@ -1,5 +1,5 @@
 function Authenticated({ children }) {
-  console.log('Authenticated wrapper applied', children);
+  // console.log('Authenticated wrapper applied', children);
   return children;
 }
 

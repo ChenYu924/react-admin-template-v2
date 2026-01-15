@@ -2,7 +2,7 @@ import { Card } from 'antd';
 
 function Workspace() {
   return (
-    <Card className='h-[3000px]'>
+    <Card className='ant-card'>
       工作台
     </Card>
   );
