@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Layout, Avatar, Dropdown } from 'antd';
 import {
   UserOutlined,
@@ -7,7 +8,7 @@ import {
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import styles from '@/layouts/styles/PrimaryLayout.module.less';
-import Cookies from 'js-cookie';
+import BreadcrumbBar from './BreadcrumbBar.jsx';
 
 const { Header } = Layout;
 const items = [
@@ -21,10 +22,11 @@ const items = [
 
 function PrimaryHeader({ collapsed, setCollapsed }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleMenuClick({ key }) {
     if (key === 'loginOut') {
-      Cookies.remove('token');
+      dispatch({ type: 'user/setClear' });
       navigate('/login');
     }
   }
@@ -35,6 +37,7 @@ function PrimaryHeader({ collapsed, setCollapsed }) {
         <div className={styles.collapsedContainer} onClick={() => setCollapsed(!collapsed)}>
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
+        <BreadcrumbBar />
       </div>
       <Dropdown menu={{ items, onClick: handleMenuClick }}>
         <Avatar className={styles.avatar} icon={<UserOutlined />} />

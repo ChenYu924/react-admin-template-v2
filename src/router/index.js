@@ -18,6 +18,14 @@ const router = [
         showMenu: true,
         showHeader: true,
       },
+      {
+        path: 'menu1',
+        element: 'MenuPage1',
+      },
+      {
+        path: 'menu2',
+        element: 'MenuPage2',
+      }
     ],
   },
 ];

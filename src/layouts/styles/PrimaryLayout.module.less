@@ -8,6 +8,10 @@
     position: sticky;
     top: 0;
     z-index: 99;
+    box-shadow:
+      1px 0 2px 0 rgba(0, 0, 0, 0.03),
+      1px 0 6px -1px rgba(0, 0, 0, 0.02),
+      2px 0 4px 0 rgba(0, 0, 0, 0.02);
 
     .logoContainer {
       height: 64px;
@@ -54,11 +58,16 @@
       0 2px 4px 0 rgba(0, 0, 0, 0.02);
 
     .left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
       .collapsedContainer {
         width: 32px;
         height: 32px;
         display: flex;
         color: #7987a1;
+        display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 6px;

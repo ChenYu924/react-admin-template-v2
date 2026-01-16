@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Form, Input, Checkbox, Typography, Button, Space } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import AOS from 'aos';
@@ -8,8 +9,54 @@ import styles from '@/components/login/styles/LoginPage.module.less';
 import { generateUUID } from '@/utils/commonUtils.js';
 import Captcha from '@/components/login/Captcha.jsx';
 
+/**
+ * @description 模拟后端返回的菜单数据
+ * @typedef {Object} MenuItem - {key, label, icon?, path?, children?}
+ * 菜单数据说明：通常由后端提供；登录时可缓存到 Redux/本地；根据用户角色/权限返回对应菜单。
+ */
+const menuItems = [
+  {
+    key: '/workspace',
+    label: '我的工作台',
+    icon: 'DashboardOutlined',
+  },
+  {
+    key: '2',
+    label: '目录1',
+    icon: 'ProfileOutlined',
+    children: [
+      {
+        key: '/menu1',
+        label: '菜单1',
+      },
+      {
+        key: '1-2',
+        label: '目录1-2',
+        children: [
+          {
+            key: '/menu2',
+            label: '菜单1-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  // {
+  //   key: '3',
+  //   label: '目录2',
+  //   icon: 'ProfileOutlined',
+  //   children: [
+  //     ...Array.from({ length: 80 }, (_, i) => ({
+  //       key: `3-${i}`,
+  //       label: `菜单2-${i + 1}`,
+  //     })),
+  //   ],
+  // },
+];
+
 function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [forgetForm] = Form.useForm();
   const [remember, setRemember] = useState(true);
@@ -34,6 +81,7 @@ function LoginPage() {
       setLoading(true);
       setTimeout(() => {
         Cookies.set('token', generateUUID(), { expires: 7 });
+        dispatch({ type: 'user/setMenu', payload: menuItems });
         setLoading(false);
         navigate('/');
       }, 1000);
