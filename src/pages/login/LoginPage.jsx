@@ -22,20 +22,20 @@ const menuItems = [
   },
   {
     key: '2',
-    label: '目录1',
-    icon: 'ProfileOutlined',
+    label: '测试',
+    icon: 'ExperimentOutlined',
     children: [
       {
-        key: '/menu1',
-        label: '菜单1',
+        key: '/drag',
+        label: '拖拽',
       },
       {
-        key: '1-2',
-        label: '目录1-2',
+        key: '/second',
+        label: '层级二',
         children: [
           {
-            key: '/menu2',
-            label: '菜单1-2-1',
+            key: '/third',
+            label: '层级三',
           },
         ],
       },

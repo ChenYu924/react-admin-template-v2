@@ -1,17 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
-import styles from './styles/Captcha.module.less';
+import styles from './styles/HorizontalScrollBar.module.less';
 
-function Captcha({ value, onChange, onSuccess }) {
+function HorizontalScrollBar() {
   const sliderRef = useRef(null);
   const [x, setX] = useState(0);
   const [verified, setVerified] = useState(false);
 
-  useEffect(() => {
-    if (value) {
-      setVerified(value === 'success');
-    }
-  }, [value]);
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -20,12 +15,12 @@ function Captcha({ value, onChange, onSuccess }) {
     return () => {
       slider.removeEventListener('mousedown', handleMouseDown);
     };
-  }, [verified]);
+  }, []);
 
   function handleMouseDown(e) {
-    if (verified) return;
     const slider = sliderRef.current;
     if (!slider) return;
+
     const startX = e.clientX;
     const sliderLeft = slider.offsetLeft;
 
@@ -33,17 +28,14 @@ function Captcha({ value, onChange, onSuccess }) {
       const moveX = e.clientX - startX;
       let newLeft = sliderLeft + moveX;
       const maxLeft = slider.parentElement.offsetWidth - slider.offsetWidth - 2;
-
       if (newLeft < 0) {
         newLeft = 0;
       }
       if (newLeft > maxLeft) {
         newLeft = maxLeft;
       }
-
       setX(newLeft);
     }
-
     function handleMouseUp() {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
@@ -51,13 +43,10 @@ function Captcha({ value, onChange, onSuccess }) {
       const maxLeft = slider.parentElement.offsetWidth - slider.offsetWidth - 2;
       if (slider.offsetLeft >= maxLeft) {
         setX(maxLeft);
-        onChange('success');
-        onSuccess();
-        // 成功后解绑 mousedown，禁止再次拖动
+        setVerified(true);
         slider.removeEventListener('mousedown', handleMouseDown);
       } else {
         setX(0);
-        onChange('fail');
       }
     }
 
@@ -67,17 +56,17 @@ function Captcha({ value, onChange, onSuccess }) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.slider} ref={sliderRef} style={{ left: `${x}px` }}>
+      <div className={styles.slider} style={{ left: `${x}px` }} ref={sliderRef}>
         <ArrowRightOutlined />
       </div>
-      <div className={styles.sliderBg} style={{ width: x > 0 ? `${x + 19}px` : 0 }} />
-      {!verified ? (
-        <span className={styles.tips}>按住滑块拖动</span>
+      <div className={styles.mask} style={{ width: `${x > 0 ? x + 19 : 0}px` }} />
+      {verified ? (
+        <span className={styles.successText}>验证成功</span>
       ) : (
-        <div className={styles.successText}>验证成功</div>
+        <span className={styles.tips}>按住滑块拖动</span>
       )}
     </div>
   );
 }
 
-export default Captcha;
+export default HorizontalScrollBar;

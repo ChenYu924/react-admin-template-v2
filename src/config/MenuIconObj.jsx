@@ -1,8 +1,8 @@
-import { DashboardOutlined, ProfileOutlined } from '@ant-design/icons';
+import { DashboardOutlined, ExperimentOutlined } from '@ant-design/icons';
 
 const MenuIconObj = {
   DashboardOutlined,
-  ProfileOutlined,
+  ExperimentOutlined,
 };
 
 export default MenuIconObj;

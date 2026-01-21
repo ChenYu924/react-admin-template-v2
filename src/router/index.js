@@ -19,13 +19,9 @@ const router = [
         showHeader: true,
       },
       {
-        path: 'menu1',
-        element: 'MenuPage1',
+        path: '/drag',
+        element: 'CustomDrag',
       },
-      {
-        path: 'menu2',
-        element: 'MenuPage2',
-      }
     ],
   },
 ];
