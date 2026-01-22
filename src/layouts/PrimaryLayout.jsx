@@ -11,13 +11,12 @@ const { BackTop } = FloatButton;
 
 function PrimaryLayout() {
   const { showMenu, showHeader } = useContext(PrimaryLayoutContext);
-  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <Layout className={styles.container}>
-      {showMenu && <PrimarySider collapsed={collapsed} />}
+      {showMenu && <PrimarySider />}
       <Layout>
-        {showHeader && <PrimaryHeader collapsed={collapsed} setCollapsed={setCollapsed} />}
+        {showHeader && <PrimaryHeader />}
         <Content>
           <div className={styles.content}>
             <Outlet />

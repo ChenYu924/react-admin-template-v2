@@ -6,10 +6,11 @@ import MenuIconObj from '@/config/MenuIconObj.jsx';
 
 const { Sider } = Layout;
 
-function PrimarySider({ collapsed }) {
+function PrimarySider() {
   const location = useLocation();
   const navigate = useNavigate();
   const items = useSelector((state) => state.user.menu);
+  const collapsed = useSelector((state) => state.system.siderCollapsed);
 
   function handleLogoClick() {
     navigate('/');
@@ -18,7 +19,7 @@ function PrimarySider({ collapsed }) {
     navigate(key);
   }
   function renderMenuItem(item) {
-    const { key , label, icon, children } = item;
+    const { key, label, icon, children } = item;
     const MenuIcon = MenuIconObj[icon];
 
     return {

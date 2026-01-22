@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Layout, Avatar, Dropdown } from 'antd';
 import {
   UserOutlined,
@@ -20,9 +20,10 @@ const items = [
   },
 ];
 
-function PrimaryHeader({ collapsed, setCollapsed }) {
+function PrimaryHeader() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const collapsed = useSelector((state) => state.system.siderCollapsed);
 
   function handleMenuClick({ key }) {
     if (key === 'loginOut') {
@@ -30,11 +31,14 @@ function PrimaryHeader({ collapsed, setCollapsed }) {
       navigate('/login');
     }
   }
+  function handleCollapseBtn() {
+    dispatch({ type: 'system/setSiderCollapsed', payload: !collapsed });
+  }
 
   return (
     <Header className={styles.header} theme="light">
       <div className={styles.left}>
-        <div className={styles.collapsedContainer} onClick={() => setCollapsed(!collapsed)}>
+        <div className={styles.collapsedContainer} onClick={handleCollapseBtn}>
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
         <BreadcrumbBar />

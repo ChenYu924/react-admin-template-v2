@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { Typography } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import styles from './styles/HorizontalScrollBar.module.less';
 
@@ -10,12 +11,14 @@ function HorizontalScrollBar() {
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
-    slider.addEventListener('mousedown', handleMouseDown);
+    if(!verified) {
+      slider.addEventListener('mousedown', handleMouseDown);
+    }
 
     return () => {
       slider.removeEventListener('mousedown', handleMouseDown);
     };
-  }, []);
+  }, [verified]);
 
   function handleMouseDown(e) {
     const slider = sliderRef.current;
@@ -53,18 +56,25 @@ function HorizontalScrollBar() {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   }
+  function handleReset() {
+    setX(0);
+    setVerified(false);
+  }
 
   return (
     <div className={styles.container}>
-      <div className={styles.slider} style={{ left: `${x}px` }} ref={sliderRef}>
-        <ArrowRightOutlined />
+      <div className={styles.barContainer}>
+        <div className={styles.slider} style={{ left: `${x}px` }} ref={sliderRef}>
+          <ArrowRightOutlined />
+        </div>
+        <div className={styles.mask} style={{ width: `${x > 0 ? x + 19 : 0}px` }} />
+        {verified ? (
+          <span className={styles.successText}>验证成功</span>
+        ) : (
+          <span className={styles.tips}>按住滑块拖动</span>
+        )}
       </div>
-      <div className={styles.mask} style={{ width: `${x > 0 ? x + 19 : 0}px` }} />
-      {verified ? (
-        <span className={styles.successText}>验证成功</span>
-      ) : (
-        <span className={styles.tips}>按住滑块拖动</span>
-      )}
+      <Typography.Link onClick={handleReset}>重置</Typography.Link>
     </div>
   );
 }

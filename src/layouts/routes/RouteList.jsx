@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Spin } from 'antd';
 import router from '@/router/index.js';
 import { generateUUID } from '@/utils/commonUtils.js';
 import Page403 from '@/pages/Page403.jsx';
@@ -18,7 +19,7 @@ const allPages = Object.fromEntries(
 function RouteList() {
   function renderLazy(Component, children = null) {
     return Component ? (
-      <Suspense fallback={null}>
+      <Suspense fallback={<Spin fullscreen />}>
         <Component>{children}</Component>
       </Suspense>
     ) : null;

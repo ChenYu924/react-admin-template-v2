@@ -1,85 +1,91 @@
 @import (reference) '@/global.less';
 
 .container {
-  height: 40px;
-  width: 400px;
-  border-radius: @common-radius-normal;
-  border: 1px solid #d9d9d9;
-  background-color: #f1f1f4;
-  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: @common-size-normal;
 
-  .slider {
-    width: 38px;
-    height: 38px;
-    background-color: #fff;
-    border-radius: 7px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  .barContainer {
+    height: 40px;
+    width: 400px;
+    border-radius: @common-radius-normal;
+    border: 1px solid #d9d9d9;
+    background-color: #f1f1f4;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition:
-      background 0.3s ease-in,
-      color 0.3s ease-in;
-    cursor: move;
-    user-select: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
 
-    &:hover {
-      background-color: #1991fa;
-      color: white;
-    }
-  }
+    .slider {
+      width: 38px;
+      height: 38px;
+      background-color: #fff;
+      border-radius: 7px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition:
+              background 0.3s ease-in,
+              color 0.3s ease-in;
+      cursor: move;
+      user-select: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
 
-  .mask {
-    height: 100%;
-    background-color: #57d187;
-    position: absolute;
-    border-radius: 7px;
-    top: 0;
-    left: 0;
-  }
-
-  .tips {
-    user-select: none;
-    background: linear-gradient(
-      to right,
-      #4d5875 0%,
-      #4d5875 40%,
-      #fff 50%,
-      #4d5875 60%,
-      #4d5875 100%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-    background-size: 200% 100%;
-    animation: shine 2s cubic-bezier(0, 0.2, 1, 1) infinite;
-
-    @keyframes shine {
-      0% {
-        background-position: 100% 0;
-      }
-      100% {
-        background-position: -100% 0;
+      &:hover {
+        background-color: #1991fa;
+        color: white;
       }
     }
-  }
 
-  .successText {
-    width: 56px;
-    height: 40px;
-    line-height: 40px;
-    color: #fff;
-    position: absolute;
-    left: calc(50% - 28px);
-    z-index: 3;
+    .mask {
+      height: 100%;
+      background-color: #57d187;
+      position: absolute;
+      border-radius: 7px;
+      top: 0;
+      left: 0;
+    }
+
+    .tips {
+      user-select: none;
+      background: linear-gradient(
+              to right,
+              #4d5875 0%,
+              #4d5875 40%,
+              #fff 50%,
+              #4d5875 60%,
+              #4d5875 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-size-adjust: none;
+      -webkit-text-size-adjust: none;
+      background-size: 200% 100%;
+      animation: shine 2s cubic-bezier(0, 0.2, 1, 1) infinite;
+
+      @keyframes shine {
+        0% {
+          background-position: 100% 0;
+        }
+        100% {
+          background-position: -100% 0;
+        }
+      }
+    }
+
+    .successText {
+      width: 56px;
+      height: 40px;
+      line-height: 40px;
+      color: #fff;
+      position: absolute;
+      left: calc(50% - 28px);
+      z-index: 3;
+    }
   }
 }
