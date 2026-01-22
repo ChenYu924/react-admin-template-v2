@@ -21,7 +21,7 @@ const menuItems = [
     icon: 'DashboardOutlined',
   },
   {
-    key: '2',
+    key: 'test',
     label: '测试',
     icon: 'ExperimentOutlined',
     children: [
@@ -41,17 +41,41 @@ const menuItems = [
       },
     ],
   },
-  // {
-  //   key: '3',
-  //   label: '目录2',
-  //   icon: 'ProfileOutlined',
-  //   children: [
-  //     ...Array.from({ length: 80 }, (_, i) => ({
-  //       key: `3-${i}`,
-  //       label: `菜单2-${i + 1}`,
-  //     })),
-  //   ],
-  // },
+  {
+    key: 'multiLevel',
+    label: '多层级目录',
+    icon: 'PartitionOutlined',
+    children: [
+      {
+        key: '/menu1',
+        label: '菜单1',
+      },
+      {
+        key: 'innerDir1',
+        label: '内层目录1',
+        children: [
+          {
+            key: '/menu2',
+            label: '菜单2',
+          },
+          {
+            key: '/menu3',
+            label: '菜单3',
+          },
+          {
+            key: 'innerDir2',
+            label: '内层目录2',
+            children: [
+              {
+                key: '/menu4',
+                label: '菜单4',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 function LoginPage() {

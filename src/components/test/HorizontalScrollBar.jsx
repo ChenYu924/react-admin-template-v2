@@ -11,7 +11,7 @@ function HorizontalScrollBar() {
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
-    if(!verified) {
+    if (!verified) {
       slider.addEventListener('mousedown', handleMouseDown);
     }
 
@@ -74,7 +74,9 @@ function HorizontalScrollBar() {
           <span className={styles.tips}>按住滑块拖动</span>
         )}
       </div>
-      <Typography.Link onClick={handleReset}>重置</Typography.Link>
+      <Typography.Link onClick={handleReset}>
+        重置
+      </Typography.Link>
     </div>
   );
 }

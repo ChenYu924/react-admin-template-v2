@@ -22,6 +22,22 @@ const router = [
         path: '/drag',
         element: 'CustomDrag',
       },
+      {
+        path: '/menu1',
+        element: 'Menu1',
+      },
+      {
+        path: '/menu2',
+        element: 'Menu2',
+      },
+      {
+        path: '/menu3',
+        element: 'Menu3',
+      },
+      {
+        path: '/menu4',
+        element: 'Menu4',
+      },
     ],
   },
 ];
