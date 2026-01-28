@@ -12,7 +12,7 @@ function Page403() {
         subTitle="您没有访问该页面的权限"
         extra={
           <Button type="primary" onClick={() => navigate('/', { replace: true })}>
-            返回首页
+            返回
           </Button>
         }
       />

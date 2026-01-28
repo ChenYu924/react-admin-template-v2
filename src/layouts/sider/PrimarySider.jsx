@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout, Menu } from 'antd';
 import styles from '@/layouts/styles/PrimaryLayout.module.less';
 import MenuIconObj from '@/config/MenuIconObj.jsx';
+import { useEffect } from 'react';
 
 const { Sider } = Layout;
 
@@ -16,10 +16,10 @@ function PrimarySider() {
   const menuKey = useSelector((state) => state.system.menuKey);
 
   useEffect(() => {
-    if (menuKey) {
-      navigate(menuKey);
+    if (location.pathname && location.pathname !== menuKey) {
+      dispatch({ type: 'system/setMenuKey', payload: location.pathname });
     }
-  }, [menuKey]);
+  }, [location]);
 
   function handleLogoClick() {
     navigate('/');
@@ -39,6 +39,9 @@ function PrimarySider() {
       children: children && children.length > 0 && children.map(renderMenuItem),
     };
   }
+  function menuChange({ key, keyPath, selectedKeys, domEvent }) {
+    console.log('Menu selected:', { key, keyPath, selectedKeys, domEvent });
+  }
 
   return (
     <Sider className={styles.slider} collapsed={collapsed} theme="light">
@@ -51,6 +54,7 @@ function PrimarySider() {
           selectedKeys={[menuKey || location.pathname]}
           mode="inline"
           onClick={handleMenuItemClick}
+          onSelect={menuChange}
         />
       </div>
     </Sider>

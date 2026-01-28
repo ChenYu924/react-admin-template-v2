@@ -29,16 +29,6 @@ const menuItems = [
         key: '/drag',
         label: '拖拽',
       },
-      {
-        key: '/second',
-        label: '层级二',
-        children: [
-          {
-            key: '/third',
-            label: '层级三',
-          },
-        ],
-      },
     ],
   },
   {

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, FloatButton } from 'antd';
 import styles from './styles/PrimaryLayout.module.less';

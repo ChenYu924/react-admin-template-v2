@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function HomePage() {
   const navigate = useNavigate();
+  const menuKey = useSelector((state) => state.system.menuKey);
 
   useEffect(() => {
     const token = document.cookie
@@ -10,7 +12,11 @@ function HomePage() {
       .find((row) => row.startsWith('token='))
       ?.split('=')[1];
     if (token) {
-      navigate('/workspace');
+      if (menuKey) {
+        navigate(menuKey);
+      } else {
+        navigate('/workspace');
+      }
     } else {
       navigate('/login');
     }

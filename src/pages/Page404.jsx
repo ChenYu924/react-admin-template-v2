@@ -12,7 +12,7 @@ function Page404() {
         subTitle="找不到对应的页面"
         extra={
           <Button type="primary" onClick={() => navigate('/', { replace: true })}>
-            返回首页
+            返回
           </Button>
         }
       />
