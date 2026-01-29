@@ -12,7 +12,7 @@ function HomePage() {
       .find((row) => row.startsWith('token='))
       ?.split('=')[1];
     if (token) {
-      if (menuKey) {
+      if (menuKey && menuKey !== '/') {
         navigate(menuKey);
       } else {
         navigate('/workspace');
