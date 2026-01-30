@@ -23,11 +23,10 @@ function PrimarySider() {
     }
   }, [location]);
   useEffect(() => {
-    if(!collapsed) {
-      console.log('更新 openKeys:', menuKey, findParentKeys(items, menuKey));
+    if (!collapsed) {
       setOpenKeys(findParentKeys(items, menuKey));
     }
-  }, [menuKey]);
+  }, [menuKey, collapsed]);
 
   function renderMenuItem(item) {
     const { key, label, icon, children } = item;
