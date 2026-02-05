@@ -66,6 +66,17 @@ const menuItems = [
       },
     ],
   },
+  {
+    key: 'height',
+    label: '多菜单目录',
+    icon: 'ColumnHeightOutlined',
+    children: [
+      ...Array.from({ length: 60 }, (_, i) => ({
+        key: `menu-${i}`,
+        label: `菜单${i + 1}`,
+      })),
+    ],
+  },
 ];
 
 function LoginPage() {
