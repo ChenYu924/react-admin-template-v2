@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import styles from './styles/HeadTitle.module.less';
 
-function HeadTitle({ title = '标题', size = 'middle' }) {
+function HeadTitle({ title = '标题', size = 'middle', ...restProps }) {
   function getClass(name) {
     switch (size) {
       case 'small':
@@ -15,7 +15,7 @@ function HeadTitle({ title = '标题', size = 'middle' }) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} {...restProps}>
       <div className={classnames(styles.verticalLine, getClass('verticalLine'))} />
       <span className={classnames(styles.title, getClass('title'))}>{title}</span>
     </div>
