@@ -40,7 +40,7 @@ function PrimarySider() {
     };
   }
   function handleLogoClick() {
-    navigate('/');
+    navigate('/workspace');
   }
   function handleMenuItemClick({ key }) {
     navigate(key);
