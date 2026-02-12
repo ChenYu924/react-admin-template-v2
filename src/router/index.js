@@ -23,6 +23,10 @@ const router = [
         element: 'CustomDrag',
       },
       {
+        path: '/2048',
+        element: 'Chessboard',
+      },
+      {
         path: '/menu1',
         element: 'Menu1',
       },

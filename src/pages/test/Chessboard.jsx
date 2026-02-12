@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, message } from 'antd';
+import { Card, Button, message } from 'antd';
 import styles from '@/components/test/styles/Chessboard.module.less';
 
 const initBlockList = Array.from({ length: 16 }, (_, index) => ({
@@ -182,7 +182,7 @@ function Chessboard() {
   }
 
   return (
-    <>
+    <Card className="ant-card">
       <Button style={{ marginBottom: '16px' }} type="primary" danger onClick={initChessboard}>
         重置
       </Button>
@@ -200,7 +200,7 @@ function Chessboard() {
           </div>
         ))}
       </div>
-    </>
+    </Card>
   );
 }
 

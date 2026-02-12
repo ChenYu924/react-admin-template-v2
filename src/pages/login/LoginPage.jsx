@@ -29,6 +29,10 @@ const menuItems = [
         key: '/drag',
         label: '拖拽',
       },
+      {
+        key: '/2048',
+        label: '2048',
+      },
     ],
   },
   {

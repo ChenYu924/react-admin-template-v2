@@ -2,7 +2,7 @@ import { Card } from 'antd';
 import HeadTitle from '@/components/common/HeadTitle.jsx';
 import HorizontalScrollBar from '@/components/test/HorizontalScrollBar.jsx';
 import TableDrag from '@/components/test/TableDrag.jsx';
-import Chessboard from '@/pages/test/Chessboard.jsx';
+
 function CustomDrag() {
   return (
     <Card className="ant-card">
@@ -13,9 +13,6 @@ function CustomDrag() {
       <HeadTitle style={{ marginTop: 16 }} title="拖拽排序" />
       <div className="py-4 pl-8">
         <TableDrag />
-      </div>
-      <div className="pl-8">
-        {/*<Chessboard />*/}
       </div>
     </Card>
   );
