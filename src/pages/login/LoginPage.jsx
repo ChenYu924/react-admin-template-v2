@@ -33,6 +33,10 @@ const menuItems = [
         key: '/2048',
         label: '2048',
       },
+      {
+        key: '/customTurntable',
+        label: '自定义转盘',
+      },
     ],
   },
   {

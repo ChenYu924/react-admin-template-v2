@@ -157,7 +157,7 @@ function Chessboard() {
       setTimeout(() => {
         localStorage.removeItem('blockList');
         setBlockList(initBlockList);
-      }, 1000);
+      }, 5000);
     }
     // const lose = blockList.every((item) => item.value);
     // if (lose) {

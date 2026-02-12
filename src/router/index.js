@@ -27,6 +27,10 @@ const router = [
         element: 'Chessboard',
       },
       {
+        path: '/customTurntable',
+        element: 'CustomTurntable',
+      },
+      {
         path: '/menu1',
         element: 'Menu1',
       },
