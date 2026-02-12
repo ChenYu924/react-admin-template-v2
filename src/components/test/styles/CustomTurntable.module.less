@@ -1,0 +1,89 @@
+.container {
+  min-height: calc(100vh - 98px);
+  display: flex;
+
+  .left {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .turntableContainer {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    user-select: none;
+
+    .invertedTriangle {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 32px solid #1a237e;
+      position: absolute;
+      top: -28px;
+      left: 284px;
+    }
+
+    .btn {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background-color: #6C69CC;
+      box-shadow: rgba(35, 81, 37, 0.16) 0 4px 7.63272px -0.836728px,
+      rgba(0, 0, 0, 0.082) 0px 2.16327px 4.65309px -0.836728px;
+      position: absolute;
+      left: 252px;
+      top: 252px;
+      z-index: 99;
+      color: #fff;
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      writing-mode: vertical-lr;
+      letter-spacing: 4px;
+      padding-right: 1px;
+      cursor: pointer;
+      transform: scale(1);
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+        background-color: #45A049;
+      }
+    }
+
+    .turntable {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.1s linear; // 平滑旋转过渡
+      will-change: transform; // 优化性能
+
+      .turntableItem {
+        width: 100%;
+        height: 100%;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .itemText {
+        position: absolute;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        pointer-events: none;
+        transform: translate(-50%, -50%); // 确保文本居中对齐
+        white-space: nowrap; // 防止文本换行
+      }
+    }
+  }
+}
